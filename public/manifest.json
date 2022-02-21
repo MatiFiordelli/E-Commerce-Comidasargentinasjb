@@ -1,0 +1,12 @@
+{
+  "short_name": "E-Commerce AF",
+  "name": "E-Commerce Argentinian Foods",
+  "icons": [
+    {
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
