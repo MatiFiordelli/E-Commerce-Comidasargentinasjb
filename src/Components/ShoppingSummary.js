@@ -87,8 +87,3 @@ export default class ShoppingSummary extends React.Component {
 	}
 	
 }
-//problema en los botones add to cart al cambiar de pagina. ej: breads, pides, etc
-//el boton Cart chiquito debe aparecer al ser elegido un producto y viseversa(desaparecer)
-//futuramente poner opcion vaciar carrito y botones de arrow amount en resumen(loadsummary)
-//problema cuando el summary esta lleno, no se ve la ultima linea Total negra
-//el spinner, ver de ponerlo unico
