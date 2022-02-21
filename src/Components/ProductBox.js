@@ -13,7 +13,7 @@ export default class ProductBox extends React.Component {
 	}
 	
 	//set the state and transfer the values back to the component GridResults
-	async producttState(e) {//ver si es necesario el async y await!!!!!!!!!!!!!!!!!
+	async producttState(e) {
 		await this.setState({ amount:e })
 	}
 	
