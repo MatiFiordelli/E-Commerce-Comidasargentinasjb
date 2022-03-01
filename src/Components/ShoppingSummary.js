@@ -12,17 +12,29 @@ export default class ShoppingSummary extends React.Component {
 	
 	componentDidUpdate() {
 		this.loadSummary()
+		
+		//update the lower limit of gridResultsProducts, based on the visibility of btnSummary
+		if (document.getElementById('btnSummary').style.visibility === 'visible') {
+			document.getElementById('gridResultsProducts').style.paddingBottom = '16px'
+		}else {
+			document.getElementById('gridResultsProducts').style.paddingBottom = '16px'
+			document.getElementById('gridResultsProducts').style.marginBottom = '0px'
+		}
 	}
 	
 	showwSummary() {
 		let summaryContainer = document.getElementById('summaryContainer')
-		
-		if (summaryContainer.style.height === '95%') {
+		let txtBtnShowCart = document.getElementById('txtBtnShowCart')
+		let vh = (window.innerHeight - 52).toString() +'px'
+
+		if (summaryContainer.style.height === vh) {
 			summaryContainer.style.height = '20px'
 			summaryContainer.style.visibility = 'hidden'
+			txtBtnShowCart.innerText = 'Display Cart'
 		}else {
-			summaryContainer.style.height = '95%'
+			summaryContainer.style.height = vh
 			summaryContainer.style.visibility = 'visible'
+			txtBtnShowCart.innerText = 'Hide Cart'
 		}
 	}
 	
@@ -42,10 +54,12 @@ export default class ShoppingSummary extends React.Component {
 			}
 			stringData += 'total: ' + total
 			table += `<tr><td colspan="5" id= "total">Total: R$${total}</td></tr>`
-			table += `<tr><td colspan="5" id= "btnSendWhatsapp"><a href="https://api.whatsapp.com/send/?phone=${this.state.wsNumber}&text=${stringData}&app_absent=0" target="_blank" title="Click to send this Summary to the seller">BUY</a>&nbsp;
-				<input type="text" value="${this.state.wsNumber}" onChange="${(e)=>this.setState({wsNumber:e.target.value})}" id ="whatsappNumber" placeholder="write your whatsapp Number"/></td></tr></table>`
+			table += `<tr><td colspan="5" id= "btnSendWhatsapp"><button disabled title="Very Soon..">BUY</button></td></tr></table>`
+			// table += `<tr><td colspan="5" id= "btnSendWhatsapp"><a href="https://api.whatsapp.com/send/?phone=${this.state.wsNumber}&text=${stringData}&app_absent=0" target="_blank" title="Click to send this Summary to the seller">BUY</a>&nbsp;
+				// <input type="text" value="${this.state.wsNumber}" onChange="${(e)=>this.setState({wsNumber:e.target.value})}" id ="whatsappNumber" placeholder="write your whatsapp Number"/></td></tr></table>`
 			
 			document.getElementById('summaryContainer').innerHTML = table	
+			
 			btnSummary.visibility = 'visible'
 			btnSummary.transform = 'translateY(0px)'
 		} else {
@@ -69,7 +83,7 @@ export default class ShoppingSummary extends React.Component {
 
 	render() {
 			return(
-				<div>
+				<div id="summaryParent">
 					<section id="summaryContainer"/>
 					<button id="btnSummary" onClick={()=>this.showSummary()}>
 						<div id="imgLittleCartContainer">
@@ -87,3 +101,6 @@ export default class ShoppingSummary extends React.Component {
 	}
 	
 }
+
+//futuramente poner opcion vaciar carrito y botones de arrow amount en resumen(loadsummary)
+//el spinner, ver de ponerlo unico

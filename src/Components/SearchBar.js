@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, /* useEffect */ } from 'react'
 import ReactDOM from 'react-dom'
 import GridResults from './GridResults'
 import { useNavigate } from 'react-router-dom'
@@ -37,20 +37,20 @@ export default function SearchBar() {
 		}
 	}
 	
-	useEffect(()=>{
+/* 	useEffect(()=>{
 		let ls = localStorage.getItem('searchInputLS')
 		
 		//checks if a search has been made
 		if(ls !== null) {
 			document.getElementById('searchInput').value = ls
 			
-			//checks if the page has benn refreshed
+			//checks if the page has been refreshed
 			if(search === '') {
 				setSearch(ls)
 				getData('search', ls)
 			}
 		}
-	})
+	}) */
 
 	return (
 		<div id="searchContainer">

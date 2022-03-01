@@ -30,7 +30,6 @@ export default class FetchData extends React.Component {
 		document.getElementById('spinner').style.visibility = 'visible'
 		if(value !== '') {
 			localStorage.removeItem('searchInputLS')
-			
 			let theUrl = `http://comidasargentinasjb.atwebpages.com/connection.php?${arg}=${value}`
 			let component
 			fetch(theUrl)

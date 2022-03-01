@@ -55,28 +55,23 @@ export default class ProductBox extends React.Component {
 			bac.transform = 'scale(0%)'
 			bac.visibility = 'hidden'
 			cap.visibility = 'visible'
-			cap.transform = 'translateY(31px)'
+			cap.transform = 'translateY(130px)'
 		}else {
 			bac.transform = 'scale(100%)'
 			bac.visibility = 'visible'
 			cap.visibility = 'hidden'
-			cap.transform = 'translateY(100px)'
+			cap.transform = 'translateY(200px)'
 		}
 	}
 	
 	componentDidMount() {
 		if (this.state.amount !== 0) {
 			this.toggleEffectsAmount(false)
+		}else {
+			this.toggleEffectsAmount(true)
 		}
-		//console.log(window.getComputedStyle(document.getElementById('titleP')).width)
-		
-		
 	}
 	 
-	componentDidUpdate() {
-
-	}
-	
 
 	render() {
 		let data = this.props.JsonResults
@@ -96,28 +91,28 @@ export default class ProductBox extends React.Component {
 			<section className="products">
 				<div className="imageProduct" id={'imgProduct' + data.id} style={styleImg} 
 					onClick={()=>this.props.transferBigImg(imgUrl)} title="Click to enlarge"/>
-				<p className="titleProduct">{data.type + ' '+ data.name}</p>
-				<p className="descriptionProduct">{data.description}</p>
-				<span className="priceProduct">R${data.price}</span>
+				<div className="titleProduct">{data.type + ' '+ data.name}</div>
+				<div className="descriptionProduct">{data.description}</div>
+				<div className="priceProduct">R${data.price}</div>
 					
 				{/* product amount elements */}
 				<div className="containerAmountProduct" id={'containerAmountProduct' + data.id}>
-					<button className="arrows" 
+					<div className="arrows" 
 						onClick={()=>this.arrowsAmount('minus')}>&#10134;
-					</button>
+					</div>
 					
 					<input className="inputAmountProduct" type="text" readOnly 
 						id={'inputAmountProduct' + data.id} 
 						value={this.state.amount} 
 						onChange={ (e) => this.productState(e.target.value) }/>
 					
-					<button className="arrows"
+					<div className="arrows"
 						onClick={()=>this.arrowsAmount('plus')}>&#10133;
-					</button>
+					</div>
 				</div>
-				<button className="btnAddCart" id={'btnAddCart' + data.id} 
+				<div className="btnAddCart" id={'btnAddCart' + data.id} 
 					onClick={(e)=>this.clickAddToCart(e)}>Add to Cart
-				</button>
+				</div>
 			</section>
 		
 		)

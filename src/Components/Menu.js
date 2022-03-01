@@ -1,7 +1,6 @@
 import React from 'react'
 import {Routes, Route, Link} from 'react-router-dom'
 import FetchData from './FetchData'
-import Promotions from './Promotions'
 
 export default class Menu extends React.Component {
 	constructor(props) {
@@ -113,7 +112,6 @@ export default class Menu extends React.Component {
 					<Route path='/pides' element={<FetchData arg='type' type='pides'/>} />
 				</Routes>
 			</nav>
-			
 		)
 	}
 }
