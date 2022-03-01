@@ -15,3 +15,7 @@ export default class App extends React.Component {
 	}
 }
 
+//cuando se navega por el historico navegacion del browser, tener en cuenta las paginas root, 
+//on F5, en caso de busquedas debe actualizar el valor del input y mostrar los resultados
+//hacer que todos los elementos aparezcan una vez cargados los resultados, incluidos menu, search
+// y summary. dentro del fetch
