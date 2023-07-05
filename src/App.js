@@ -1,6 +1,6 @@
 import React from 'react'
 import SearchBar from './Components/SearchBar'
-import Menu from './Components/Menu'
+import Menu from './Components/MenuBar'
 
 export default class App extends React.Component {
 	

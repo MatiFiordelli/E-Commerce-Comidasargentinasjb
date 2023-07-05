@@ -1,6 +1,6 @@
 import React from 'react'
 import {Routes, Route, Link} from 'react-router-dom'
-import FetchData from './FetchData'
+import FetchProducts from '../../Services/FetchProducts'
 
 export default class Menu extends React.Component {
 	constructor(props) {
@@ -105,12 +105,12 @@ export default class Menu extends React.Component {
 				</div>
 
 				<Routes>
-					<Route path='/' element={<FetchData arg='breads'/>} />
-					<Route path='/breads' element={<FetchData arg='breads'/>} />
-					<Route path='/canastitas' element={<FetchData arg='canastitas'/>} />
-					<Route path='/empanadas' element={<FetchData arg='empanadas'/>} />
-					<Route path='/pides' element={<FetchData arg='pides'/>} />
-					<Route path='/:id' element={<FetchData arg={(window.location.pathname).substring(1)}/>} />
+					<Route path='/' element={<FetchProducts arg='breads'/>} />
+					<Route path='/breads' element={<FetchProducts arg='breads'/>} />
+					<Route path='/canastitas' element={<FetchProducts arg='canastitas'/>} />
+					<Route path='/empanadas' element={<FetchProducts arg='empanadas'/>} />
+					<Route path='/pides' element={<FetchProducts arg='pides'/>} />
+					<Route path='/:id' element={<FetchProducts arg={(window.location.pathname).substring(1)}/>} />
 				</Routes>
 			</nav>
 		)

@@ -1,6 +1,6 @@
 import React from 'react'
 import ProductBox from './ProductBox'
-import ShoppingSummary from './ShoppingSummary'
+import ShoppingSummary from '../ShoppingSummary'
 
 
 //this component groups all the product boxes

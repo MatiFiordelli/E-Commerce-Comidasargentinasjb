@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import GridResults from './GridResults'
+import GridResults from '../../Components/GridResults/index.js.js'
 
-export default class FetchData extends React.Component {
+export default class FetchProducts extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {

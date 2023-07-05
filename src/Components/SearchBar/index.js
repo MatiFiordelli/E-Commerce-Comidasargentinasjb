@@ -1,6 +1,6 @@
 import React, { useState, /* useEffect */ } from 'react'
 import ReactDOM from 'react-dom'
-import GridResults from './GridResults'
+import GridResults from '../GridResults/index.js'
 import { useNavigate } from 'react-router-dom'
 
 export default function SearchBar() {
