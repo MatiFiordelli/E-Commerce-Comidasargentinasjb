@@ -105,12 +105,12 @@ export default class Menu extends React.Component {
 				</div>
 
 				<Routes>
-					<Route path='/' element={<FetchData arg='type' type='breads'/>} />
-					<Route path='/breads' element={<FetchData arg='type' type='breads'/>} />
-					<Route path='/canastitas' element={<FetchData arg='type' type='canastitas'/>} />
-					<Route path='/empanadas' element={<FetchData arg='type' type='empanadas'/>} />
-					<Route path='/pides' element={<FetchData arg='type' type='pides'/>} />
-					<Route path='/:id' element={<FetchData arg='search' type={(window.location.pathname).substring(1)}/>} />
+					<Route path='/' element={<FetchData arg='breads'/>} />
+					<Route path='/breads' element={<FetchData arg='breads'/>} />
+					<Route path='/canastitas' element={<FetchData arg='canastitas'/>} />
+					<Route path='/empanadas' element={<FetchData arg='empanadas'/>} />
+					<Route path='/pides' element={<FetchData arg='pides'/>} />
+					<Route path='/:id' element={<FetchData arg={(window.location.pathname).substring(1)}/>} />
 				</Routes>
 			</nav>
 		)

@@ -12,25 +12,25 @@ export default class FetchData extends React.Component {
 	}
 	
 	componentDidMount(){
-		this.getData(this.props.arg, this.props.type)
+		this.getData(this.props.arg)
 		document.getElementById('searchInput').value = ''
 	}
 	
 	componentDidUpdate(prevProps) {
 		//the next if, is to avoid an infinite loop updating
-		if (prevProps.type !== this.props.type) {
-			this.getData(this.props.arg, this.props.type)
+		if (prevProps.arg !== this.props.arg) {
+			this.getData(this.props.arg)
 			document.getElementById('searchInput').value = ''
 		}
 		window.scrollTo(0, 0)
 
 	}
 	
-	gettData(arg, value) {
+	gettData(value) {
 		document.getElementById('spinner').style.visibility = 'visible'
 		if(value !== '') {
 			localStorage.removeItem('searchInputLS')
-			let theUrl = `http://comidasargentinasjb.atwebpages.com/connection.php?${arg}=${value}`
+			let theUrl = `https://backend-e-commerce-comidasargentinasjb-ii4kmkkfx-matifiordelli.vercel.app/${value}`
 			let component
 			fetch(theUrl)
 			.then((response)=> response.json())

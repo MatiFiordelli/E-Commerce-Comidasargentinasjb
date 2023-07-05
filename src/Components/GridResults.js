@@ -64,8 +64,6 @@ export default class GridResults extends React.Component {
 		this.setState({shoppingList: arrayState},
 			()=>{
 				localStorage.setItem('shoppingListLS', JSON.stringify(arrayState))
-				// let lsString = localStorage.getItem('shoppingListLS')
-				// let lsJson = JSON.parse(lsString) //y estos dos ???????????????????
 			})
 	}
 	
