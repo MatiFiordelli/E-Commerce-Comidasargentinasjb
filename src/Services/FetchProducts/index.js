@@ -28,26 +28,26 @@ export default class FetchProducts extends React.Component {
 	
 	gettData(value) {
 		document.getElementById('spinner').style.visibility = 'visible'
+		const URL_BASE = 'https://backend-e-commerce-comidasargentinasjb-ii4kmkkfx-matifiordelli.vercel.app/'
+		
 		if(value !== '') {
 			localStorage.removeItem('searchInputLS')
-			let theUrl = `https://backend-e-commerce-comidasargentinasjb-ii4kmkkfx-matifiordelli.vercel.app/${value}`
-			let component
-			fetch(theUrl)
-			.then((response)=> response.json())
-			.then((data)=>{
-				this.setState({
-					search: value, 
-				})
+			let url = `${URL_BASE}${value}`
+			let component = null
+			let data = fetch(url)
+						.then((res)=>res.json())
+						.then((data)=>{
+							this.setState({ search: value })
 				
-				document.getElementById('spinner').style.visibility = 'hidden'
-				
-				//checks for the existence of some result
-				Object.keys(data).length>0
-					?component = <GridResults JsonResults = {data}/>
-					:component = <div id="message">Nothing found, try a different term</div>
-					
-				let element = document.getElementById('gridContainer')
-				ReactDOM.render(component, element)
+							document.getElementById('spinner').style.visibility = 'hidden'
+							
+							//checks for the existence of some result
+							Object.keys(data).length>0
+								?component = <GridResults JsonResults = {data}/>
+								:component = <div id="message">Nothing found, try a different term</div>
+								
+							let element = document.getElementById('gridContainer')
+							ReactDOM.render(component, element)
 			})
 		}
 	}	

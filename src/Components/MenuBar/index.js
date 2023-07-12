@@ -1,19 +1,13 @@
-import React from 'react'
-import {Routes, Route, Link} from 'react-router-dom'
-import FetchProducts from '../../Services/FetchProducts'
+import React, { useEffect, useContext, useRef } from 'react'
+import { NavLink } from 'react-router-dom'
+import { RouteContext } from '../../Context'
 
-export default class Menu extends React.Component {
-	constructor(props) {
-		super(props)
-		this.setItemMenu = this.settItemMenu.bind(this)
-	}
-	
-	componentDidMount() {
-		window.onpopstate = () => this.setItemMenu(window.location.href) //on History browser
-		this.setItemMenu(window.location.href) //on Mount
-		
-		let menuContainer = document.getElementById('menuContainer')
-		let menu = document.getElementById("menu")
+export default function MenuBar(){
+	const [setParam] = useContext(RouteContext)
+	const menuContainer = useRef(null)
+	const menuInner = useRef(null)
+
+	useEffect(()=>{
 		let moveFlag = false
 		let currentX = 0
 		let initialPos
@@ -21,34 +15,27 @@ export default class Menu extends React.Component {
 		//currentX: current position of the menu
 		//initialPos: the position where the 'drag' is started
 
-		menu.addEventListener("mousedown", dragStart)
-		window.addEventListener("mouseup", dragEnd)
-		window.addEventListener("mousemove", drag)
-		menu.addEventListener("touchstart", dragStart)
-		menu.addEventListener("touchend", dragEnd)
-		menu.addEventListener("touchmove", drag)
-		
-		function setInitialPos(e) {
+		const setInitialPos = (e) => {
 			e.type === "touchstart" || e.type === "touchmove"
 				?initialPos = e.touches[0].clientX - currentX
 				:initialPos = e.clientX - currentX
 			return initialPos
 		}
 
-		function dragStart(e) {
+		const dragStart = (e) => {
 			setInitialPos(e)
 			moveFlag = true
 		} 
 
-		function dragEnd(e) {
+		const dragEnd = (e) => {
 			initialPos = currentX
 			moveFlag = false
 		}
 
-		function drag(e) {
+		const drag = (e) => {
 			if (moveFlag) {
-				let menuRect = menu.getBoundingClientRect() 
-				let menuContainerRect = menuContainer.getBoundingClientRect() 
+				let menuRect = menuInner.current.getBoundingClientRect() 
+				let menuContainerRect = menuContainer.current.getBoundingClientRect() 
 				e.preventDefault() //avoid the movement of gridResults while 'drag' the menu
 
 			  //Drag the Menu
@@ -66,53 +53,64 @@ export default class Menu extends React.Component {
 					setInitialPos(e)
 				}
 				
-				menu.style.transform = "translateX(" + currentX + "px)"
+				menuInner.current.style.transform = "translateX(" + currentX + "px)"
 			}				
 		}
-	}
-	
-	componentDidUpdate() {
-		this.setItemMenu(window.location.href) //ver si es necesario
-	}
-	
-	//set the proper menu item in red, in correspondence to the current page
-	async settItemMenu(e) {
-		let element = await document.getElementsByClassName('item')
-		let j
-		for (let i in Object.entries(element)) {
-			element[i].style.backgroundColor = 'black'
-			
-			if(element[i].href === window.location.href) j = i
+
+		menuInner.current.addEventListener("mousedown", dragStart)
+		window.addEventListener("mouseup", dragEnd)
+		window.addEventListener("mousemove", drag)
+		menuInner.current.addEventListener("touchstart", dragStart)
+		menuInner.current.addEventListener("touchend", dragEnd)
+		menuInner.current.addEventListener("touchmove", drag)
+
+		return () => {
+			menuInner.current.removeEventListener("mousedown", dragStart)
+			window.removeEventListener("mouseup", dragEnd)
+			window.removeEventListener("mousemove", drag)
+			menuInner.current.removeEventListener("touchstart", dragStart)
+			menuInner.current.removeEventListener("touchend", dragEnd)
+			menuInner.current.removeEventListener("touchmove", drag)
 		}
-
-		//checks if this function was called from the component mount or from the click of the menu item
-		if(j !== undefined) {
-			e === window.location.href
-			?element[j].style.backgroundColor = 'red'
-			:e.target.style.backgroundColor = 'red'
-		}
+	},[])
+	
+	const setItemMenuParam = (p) => {
+		setParam(p)
 	}
 	
-
-	render() {
-		return (
-			<nav id = "menuContainer">
-				<div id = "menu">
-					<Link to='/breads' className = "item" onClick={(e)=>this.setItemMenu(e)}>Stuffed Breads</Link>
-					<Link to='/canastitas' className = "item" onClick={(e)=>this.setItemMenu(e)}>Canastitas</Link>
-					<Link to='/empanadas'className = "item" onClick={(e)=>this.setItemMenu(e)}>Empanadas</Link>
-					<Link to='/pides' className = "item" onClick={(e)=>this.setItemMenu(e)}>Turkish Pides</Link>
-				</div>
-
-				<Routes>
-					<Route path='/' element={<FetchProducts arg='breads'/>} />
-					<Route path='/breads' element={<FetchProducts arg='breads'/>} />
-					<Route path='/canastitas' element={<FetchProducts arg='canastitas'/>} />
-					<Route path='/empanadas' element={<FetchProducts arg='empanadas'/>} />
-					<Route path='/pides' element={<FetchProducts arg='pides'/>} />
-					<Route path='/:id' element={<FetchProducts arg={(window.location.pathname).substring(1)}/>} />
-				</Routes>
-			</nav>
-		)
-	}
+	return (
+		<nav className = "menu-container" ref={menuContainer}>
+			<div className = "menu-inner" ref={menuInner}> 
+				<NavLink 
+					to = '/breads' 
+					className = {({isActive})=>!isActive?'menu-inner__item':'menu-inner__item menu-inner__item--active'} 
+					onClick = {()=>setItemMenuParam('breads')}
+				>
+					Stuffed Breads
+				</NavLink>
+				<NavLink 
+					to = '/canastitas' 
+					className = {({isActive})=>!isActive?'menu-inner__item':'menu-inner__item menu-inner__item--active'}
+					onClick = {()=>setItemMenuParam('canastitas')}
+				>
+					Canastitas
+				</NavLink>
+				<NavLink 
+					to = '/empanadas' 
+					className = {({isActive})=>!isActive?'menu-inner__item':'menu-inner__item menu-inner__item--active'}
+					onClick = {()=>setItemMenuParam('empanadas')}
+				>
+					Empanadas
+				</NavLink>
+				<NavLink 
+					to = '/pides' 
+					className = {({isActive})=>!isActive?'menu-inner__item':'menu-inner__item menu-inner__item--active'}
+					onClick = {()=>setItemMenuParam('pides')}
+				>
+					Turkish Pides
+				</NavLink>
+			</div>
+		</nav>
+	)
+	
 }

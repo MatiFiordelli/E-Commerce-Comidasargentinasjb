@@ -1,0 +1,16 @@
+.grid-products-results {
+	display:grid;
+	grid-template-columns: auto auto;
+	grid-auto-rows: 300px;
+	row-gap:10px;
+	justify-content: center;
+	background-color: white;
+	margin:27px 0px 16px 0px;
+	border: 1px solid green;
+	min-width: var(--width);
+	max-width:460px;
+	width:99.5%;
+	height:100%;
+ 	overflow: hidden;
+	z-index:4;
+}
