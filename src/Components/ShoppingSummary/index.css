@@ -1,20 +1,47 @@
 .summaryParent {
 	position:fixed;
-	bottom:30px;
-	max-width: 461px;
+	bottom:28px;
 	max-height:22px;
-	width:100%;
+	width:100vw;
 	height: 100%;
 	z-index:54;
 }
 
+@media only screen and (width >= 1500px) {
+	.summaryParent{
+		bottom:4.45vw;
+		width:100vw;
+		height: auto;
+	}
+	.btnSummary{
+		font-size: 1.7vw;
+		padding: 0.5vw;
+	}
+	.imgLittleCartContainer {
+		padding-left:1.1vw;
+	}
+	.imgLittleCartContainer .imgLittleCart{
+		width:1.5vw;
+		height: auto;
+	}
+	.imgLittleCartContainer .infoCartTotalAmount {
+		font-size: 1vw;
+		top:10px;
+		width:1.6vw;
+	}
+	.summaryParent .summaryContainer, .summaryParent .tableSummary td:nth-child(2) {
+		font-size: 1.8vw;
+	}
+	.container-buttons .container-buttons__buy-button {
+		display: none;
+	}
+}
+
 .summaryContainer {
-	font-size: 0.9rem;
+	font-size: 0.8rem;
 	text-transform: capitalize;
 	position:fixed;
 	top:0px;
-	max-width:460px;
-	min-width:0px;
 	width:100%;
 	height:0px;
 	background-color: white;
@@ -23,6 +50,7 @@
 	opacity:0.95;
 	transition: cubic-bezier(0, 0.3, 1, 0) 250ms;
 	overflow-y:auto;
+	z-index: -1;
 }
 
 .btnSummary {
@@ -37,7 +65,7 @@
 	border: none;
 	opacity:1;
 	transition: linear 300ms;
-	z-index:54;
+	z-index: 22;
 }
 
 .btnSummary:hover {
@@ -50,8 +78,9 @@
 }
 
 .imgLittleCartContainer {
-	justify-self:start;
-	padding-top:2px;
+	display: flex;
+	justify-self:start;	
+	margin: auto 0;
 }
 
 .imgLittleCart {
@@ -67,19 +96,15 @@
 }
 
 .infoCartTotalAmount {
-	float:right;
-	background-color:red;
-	color: white;
+	background-color:#F00;
+	color: #FFF;
 	width:15px;
 	font-size:9px;
-	text-align:top;
-	align-self: start;
 	margin:1px;
 	border-radius:15px;
 	font-weight:lighter;
 	padding:1px;
-	transform: translate(1px, -3px)
-
+	transform: translate(1px, -3px);
 }
 
 .tableSummary {
@@ -127,6 +152,12 @@
 
 .tableSummary td:nth-child(2) {
 	font-size:0.8rem;
+}
+
+@media only screen and (max-width:350px){
+	.tableSummary td {
+		word-break: break-all;
+	}
 }
 
 .tableSummary tr:nth-of-type(even) {

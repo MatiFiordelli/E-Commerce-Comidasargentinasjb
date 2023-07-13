@@ -14,11 +14,11 @@
 .spinner-container__circle{
     animation: rotating-circle 1200ms linear infinite;
     background-color: transparent;
-    border:1vw solid;
+    border:0.7vw solid;
     border-color: transparent #3b3a3a transparent #3b3a3a;
     border-radius: 50%;
-    width: 7vw;
-    height: 7vw;
+    width: 5vw;
+    height: 5vw;
     z-index: 0;
 }
 

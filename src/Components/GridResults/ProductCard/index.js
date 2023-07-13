@@ -6,12 +6,11 @@ export default function ProductCard({detailsProduct, setBigImageUrl}) {
 	const [amountState, setAmountState] = useState(0)
 	const {shoppingList, setShoppingList} = useContext(ShoppingListContext)
 
-	//useEffect(()=>{console.log(shoppingList)},[shoppingList])
 	const styleImg = {
 		"backgroundImage": `url(${arrayImages[detailsProduct.id-1]})`
 	}
 	
-	const clickAddToCart = async(e) => {
+	const clickAddToCart = () => {
 		setAmountState(1)
 	}
 	
@@ -29,7 +28,7 @@ export default function ProductCard({detailsProduct, setBigImageUrl}) {
 			bac.transform = 'scale(0%)'
 			bac.visibility = 'hidden'
 			cap.visibility = 'visible'
-			cap.transform = 'translateY(130px)'
+			cap.transform = 'translateY(0px)'
 		}else {
 			bac.transform = 'scale(100%)'
 			bac.visibility = 'visible'
@@ -50,16 +49,6 @@ export default function ProductCard({detailsProduct, setBigImageUrl}) {
 		}
 		return shoppingListItem
 	}
-
-/* 	const getAmountFromLocalStorage = (id) => {
-		let data = JSON.parse(localStorage.getItem('shoppingListLS'))
-		for (let i in data) {
-			if (data[i].id === id) {
-				return data[i].amount
-			}
-		}
-		return -1
-	} */
 
 	const getPosition = (id) => {
 		let data = shoppingList
@@ -94,10 +83,6 @@ export default function ProductCard({detailsProduct, setBigImageUrl}) {
 		localStorage.setItem('shoppingListLS', JSON.stringify(arrayState))
 	}
 	
-	/* useEffect(() => {
-		console.log(shoppingList)
-	},[shoppingList]) */
-
 	useEffect(() => {
 		handleCart(
 					detailsProduct.id, 
@@ -138,15 +123,19 @@ export default function ProductCard({detailsProduct, setBigImageUrl}) {
 				onClick = {()=>setBigImageUrl(`${arrayImages[detailsProduct.id-1]}`)} 
 				title = "Click to enlarge"
 			/>
-			<div className = "titleProduct">
-				{detailsProduct.type + ': '+ detailsProduct.name}
+			<div className = "texts-products">
+				<div className = "titleProduct">
+					{/* detailsProduct.type + ': '+  */detailsProduct.name}
+				</div>
+				<div className = "descriptionProduct">
+					{detailsProduct.description}
+				</div>
+				<div className = "priceProduct">
+					R${detailsProduct.price}
+				</div>
 			</div>
-			<div className = "descriptionProduct">
-				{detailsProduct.description}
-			</div>
-			<div className = "priceProduct">
-				R${detailsProduct.price}
-			</div>
+
+			<div className = "background-curvy-price" />
 				
 			{/* product amount elements */}
 			<div 
@@ -179,7 +168,7 @@ export default function ProductCard({detailsProduct, setBigImageUrl}) {
 			<div 
 				className = "btnAddCart" 
 				id = {'btnAddCart' + detailsProduct.id} 
-				onClick = {(e) => clickAddToCart(e)}
+				onClick = {() => clickAddToCart()}
 			>
 				Add to Cart
 			</div>

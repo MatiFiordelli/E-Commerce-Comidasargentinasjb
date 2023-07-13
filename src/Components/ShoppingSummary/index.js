@@ -30,7 +30,7 @@ export default function ShoppingSummary() {
 	const showSummary = () => {
 		let summaryContainer = document.querySelector('.summaryContainer')
 		let txtBtnShowCart = document.querySelector('.txtBtnShowCart')
-		let vh = (window.innerHeight - 52).toString() +'px'
+		let vh = (window.innerHeight - 50).toString() +'px'
 
 		if (summaryContainer.style.height === vh) {
 			summaryContainer.style.height = '20px'
@@ -43,37 +43,6 @@ export default function ShoppingSummary() {
 		}
 	}
 	
-	/* const loadSummary = () => {
-		let obj = shoppingList //it is the shoppingList(with product amount) from GridResults
-		let table = ''
-		let btnSummary = document.querySelector('.btnSummary').style
-		let total = 0
-		let stringData = ''
-		
-		if (Object.keys(obj).length > 0) {
-			table = `<table className="tableSummary"><tr><th>Name</th><th>Type</th><th>Price</th><th>Amount</th><th>Value</th></tr>`
-			for (let i in obj) {
-				table +=  `<tr><td>${obj[i].name}</td><td>${obj[i].type}</td><td>R$${obj[i].price}</td><td>${obj[i].amount}</td><td>R$${obj[i].value}</td></tr>`
-				stringData += obj[i].name + ' ' + obj[i].type + ' ' + obj[i].price + ' ' + obj[i].amount + ' ' + obj[i].value + '\r' + ' '
-				total += obj[i].value
-			}
-			stringData += 'total: ' + total
-			table += `<tr><td colspan="5" className= "total">Total: R$${total}</td></tr>`
-			table += `<tr><td colspan="5" className= "btnSendWhatsapp"><button disabled title="Very Soon..">BUY</button></td></tr></table>`
-			// table += `<tr><td colspan="5" className= "btnSendWhatsapp"><a href="https://api.whatsapp.com/send/?phone=${this.state.wsNumber}&text=${stringData}&app_absent=0" target="_blank" title="Click to send this Summary to the seller">BUY</a>&nbsp;
-				// <input type="text" value="${this.state.wsNumber}" onChange="${(e)=>this.setState({wsNumber:e.target.value})}" className="whatsappNumber" placeholder="write your whatsapp Number"/></td></tr></table>`
-			
-			document.querySelector('.summaryContainer').innerHTML = table	
-			
-			btnSummary.visibility = 'visible'
-			btnSummary.transform = 'translateY(0px)'
-		} else {
-			document.querySelector('.summaryContainer').innerHTML = ''
-			btnSummary.visibility = 'hidden'
-			btnSummary.transform = 'translateY(100px)'
-		}
-	} */
-	
 	const calcTotal = () => {
 		let obj = shoppingList
 		let totalObj = [0, 0] //total $, and total products
@@ -85,19 +54,6 @@ export default function ShoppingSummary() {
 		}
 		return totalObj
 	}
-
-	/* useEffect(()=>{
-		//loadSummary()
-		
-		//update the lower limit of gridResultsProducts, based on the visibility of btnSummary
-		if (document.querySelector('.btnSummary').style.visibility === 'visible') {
-			document.querySelector('.gridResultsProducts').style.paddingBottom = '16px'
-		}else {
-			document.querySelector('.gridResultsProducts').style.paddingBottom = '16px'
-			document.querySelector('.gridResultsProducts').style.marginBottom = '0px'
-		}
-		
-	},[shoppingList]) */
 
 	const setSortedByFn = (param, i) => {
 		setSortedBy(param)
