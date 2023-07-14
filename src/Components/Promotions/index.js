@@ -9,13 +9,6 @@ export default class Promotions extends React.Component {
 		return(
 			<div>
 				<strong>Very Soon!</strong><br/>
-				<strong>Very Soon!</strong><br/>
-				<strong>Very Soon!</strong><br/>
-				<strong>Very Soon!</strong><br/>
-				<strong>Very Soon!</strong><br/>
-				<strong>Very Soon!</strong><br/>
-				<strong>Very Soon!</strong><br/>
-				<strong>Very Soon!</strong><br/>
 			</div>
 		)
 	}

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Layout from './Components/Layout'
 import Router from './Components/Router'
 import { useQuery } from '@tanstack/react-query'
-import { fetchProducts } from './Services/FetchProducts/index1'
+import { fetchProducts } from './Services/FetchProducts/index'
 import { ProductsContext, RouteContext } from './Context'
 
 export default function App() {

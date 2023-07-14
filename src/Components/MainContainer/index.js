@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import styles from './index.module.css'
 import Spinner from '../Spinner'
 import { ProductsContext } from '../../Context'
 import GridResults from '../GridResults/index.js'
@@ -19,7 +20,7 @@ export default function MainContainer() {
                         <GridResults />
                     </>
                     :
-                    <p className = "empty-results">
+                    <p className = {styles.emptyResults}>
                         Nothing was found, you could try a different search term
                     </p>
             }

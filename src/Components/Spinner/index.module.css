@@ -1,17 +1,17 @@
-.spinner-container{
+.spinnerContainer{
     align-items: center;
     background-color: transparent;
     display: grid;
     justify-content: center;
-    width: 100vw;
-    height: 100vh;
     position: fixed;
     top:0;
     left:0;
+    width: 100vw;
+    height: 100vh;
     z-index: 0;
 }
 
-.spinner-container__circle{
+.spinnerContainerCircle{
     animation: rotating-circle 1200ms linear infinite;
     background-color: transparent;
     border:0.7vw solid;

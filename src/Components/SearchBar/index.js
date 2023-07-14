@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
+import styles from './index.module.css'
 import { useNavigate } from 'react-router-dom'
 import { RouteContext } from '../../Context/index.js'
 
@@ -26,22 +27,22 @@ export default function SearchBar() {
 	},[])
 
 	return (
-		<header className="search-bar-container">
+		<header className = {styles.searchBarContainer}>
 			<input
-				type="text"
-				className="search-bar-container__input"
-				placeholder="What product are you looking for?"
+				type = "text"
+				className = {styles.searchBarContainerInput}
+				placeholder = "What product are you looking for?"
 				autoFocus
-				value={searchTerms}
-				onChange={(e) => setSearchTerms(e.target.value)}
-				onKeyUp={
+				value = {searchTerms}
+				onChange = {(e) => setSearchTerms(e.target.value)}
+				onKeyUp = {
 					(e) => {
 						if (e.key === "Enter") { getData() }
 					}
 				}
 			/>
 			<button
-				className="search-bar-container__button"
+				className = {styles.searchBarContainerButton}
 				onClick={() => getData()}
 			>
 				&#x1F50E;&#xFE0E;

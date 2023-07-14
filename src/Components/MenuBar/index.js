@@ -1,4 +1,5 @@
 import React, { useEffect, useContext, useRef } from 'react'
+import styles from './index.module.css'
 import { NavLink } from 'react-router-dom'
 import { RouteContext } from '../../Context'
 
@@ -79,32 +80,32 @@ export default function MenuBar(){
 	}
 	
 	return (
-		<nav className = "menu-container" ref={menuContainer}>
-			<div className = "menu-inner" ref={menuInner}> 
+		<nav className = {styles.menuContainer} ref={menuContainer}>
+			<div className = {styles.menuInner} ref={menuInner}> 
 				<NavLink 
 					to = '/breads' 
-					className = {({isActive})=>!isActive?'menu-inner__item':'menu-inner__item menu-inner__item--active'} 
+					className = {({isActive})=>!isActive ? styles.menuInnerItem : `${styles.menuInnerItem} ${styles.menuInnerItemActive}`} 
 					onClick = {()=>setItemMenuParam('breads')}
 				>
 					Stuffed Breads
 				</NavLink>
 				<NavLink 
 					to = '/canastitas' 
-					className = {({isActive})=>!isActive?'menu-inner__item':'menu-inner__item menu-inner__item--active'}
+					className = {({isActive})=>!isActive ? styles.menuInnerItem : `${styles.menuInnerItem} ${styles.menuInnerItemActive}`}
 					onClick = {()=>setItemMenuParam('canastitas')}
 				>
 					Canastitas
 				</NavLink>
 				<NavLink 
 					to = '/empanadas' 
-					className = {({isActive})=>!isActive?'menu-inner__item':'menu-inner__item menu-inner__item--active'}
+					className = {({isActive})=>!isActive ? styles.menuInnerItem : `${styles.menuInnerItem} ${styles.menuInnerItemActive}`}
 					onClick = {()=>setItemMenuParam('empanadas')}
 				>
 					Empanadas
 				</NavLink>
 				<NavLink 
 					to = '/pides' 
-					className = {({isActive})=>!isActive?'menu-inner__item':'menu-inner__item menu-inner__item--active'}
+					className = {({isActive})=>!isActive ? styles.menuInnerItem : `${styles.menuInnerItem} ${styles.menuInnerItemActive}`}
 					onClick = {()=>setItemMenuParam('pides')}
 				>
 					Turkish Pides

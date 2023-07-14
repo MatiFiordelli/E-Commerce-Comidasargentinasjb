@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react'
+import styles from './index.module.css'
 import { arrayImages } from '../../Layout/ImportedImages'
 import { ShoppingListContext } from '../../../Context'
 
@@ -21,20 +22,31 @@ export default function ProductCard({detailsProduct, setBigImageUrl}) {
 	
 	//it handles the visibility and effects of the cart button and amount elements
 	const toggleEffectsAmount = (e) => {
-		let cap = document.getElementById('containerAmountProduct' +  detailsProduct.id).style
-		let bac = document.getElementById('btnAddCart' +  detailsProduct.id).style
+		let cap = document.querySelector('#containerAmountProduct' +  detailsProduct.id)
+		let bac = document.querySelector('#btnAddCart' +  detailsProduct.id)
+		let capStyle = cap.style
+		let bacStyle = bac.style
 
 		if(e === false) {
-			bac.transform = 'scale(0%)'
-			bac.visibility = 'hidden'
-			cap.visibility = 'visible'
-			cap.transform = 'translateY(0px)'
+			bacStyle.transform = 'scale(0%)'
+			bacStyle.visibility = 'hidden'
+			capStyle.visibility = 'visible'
+			capStyle.transform = 'translateY(0px)'
 		}else {
-			bac.transform = 'scale(100%)'
-			bac.visibility = 'visible'
-			cap.visibility = 'hidden'
-			cap.transform = 'translateY(200px)'
+			bacStyle.transform = 'scale(100%)'
+			bacStyle.visibility = 'visible'
+			capStyle.visibility = 'hidden'
+			capStyle.transform = 'translateY(200px)'
 		}
+
+		//to avoid the transition on first render
+		setTimeout(()=>{
+			if(window.getComputedStyle(cap).display === 'none'){
+				capStyle.display = 'grid'
+				bacStyle.display = 'grid'				
+			}
+		},300)
+		
 	}
 
 	const createShoppingListItem = (id, name, description, price, amount, type) => {
@@ -115,58 +127,58 @@ export default function ProductCard({detailsProduct, setBigImageUrl}) {
 	},[])
 
 	return (
-		<section className = "products">
+		<section className = {styles.products}>
 			<div 
-				className = "imageProduct" 
+				className = {styles.imageProduct}
 				id = {'imgProduct' + detailsProduct.id} 
 				style = {styleImg} 
 				onClick = {()=>setBigImageUrl(`${arrayImages[detailsProduct.id-1]}`)} 
 				title = "Click to enlarge"
 			/>
-			<div className = "texts-products">
-				<div className = "titleProduct">
+			<div className = {styles.textsProduct}>
+				<div className = {styles.titleProduct}>
 					{/* detailsProduct.type + ': '+  */detailsProduct.name}
 				</div>
-				<div className = "descriptionProduct">
+				<div className = {styles.descriptionProduct}>
 					{detailsProduct.description}
 				</div>
-				<div className = "priceProduct">
+				<div className = {styles.priceProduct}>
 					R${detailsProduct.price}
 				</div>
 			</div>
 
-			<div className = "background-curvy-price" />
+			<div className = {styles.backgroundCurvyPrice} />
 				
 			{/* product amount elements */}
 			<div 
-				className = "containerAmountProduct" 
+				className = {styles.containerAmountProduct} 
 				id = {'containerAmountProduct' + detailsProduct.id}
 			>
 				<div 
-					className = "arrows" 
+					className = {styles. arrows} 
 					onClick = {()=>arrowsAmount('minus')}
 				>
 					&#10134;
 				</div>
 				
 				<input 
-					className = "inputAmountProduct" 
+					className = {styles.inputAmountProduct} 
 					type = "text" 
 					readOnly 
-					id = {'inputAmountProduct' + detailsProduct.id} 
+					id = {'input-amount-product' + detailsProduct.id} 
 					value = {amountState} 
 					onChange = { (e) => setAmountState(e.target.value) }
 				/>
 				
 				<div 
-					className = "arrows"
+					className = {styles.arrows} 
 					onClick = {() => arrowsAmount('plus')}
 				>
 					&#10133;
 				</div>
 			</div>
 			<div 
-				className = "btnAddCart" 
+				className = {styles.btnAddCart} 
 				id = {'btnAddCart' + detailsProduct.id} 
 				onClick = {() => clickAddToCart()}
 			>

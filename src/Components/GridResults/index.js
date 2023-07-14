@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react'
-//import { arrayImages } from '../../Layout/ImportedImages'
+import styles from './index.module.css'
 import ProductCard from './ProductCard'
 import ShoppingSummary from '../ShoppingSummary'
 import ProductBigImage from './ProductBigImage/index.js'
@@ -27,8 +27,8 @@ export default function GridResults() {
 	},[])
 
 	return (
-		<ShoppingListContext.Provider value={{shoppingList, setShoppingList}}>
-			<main className="grid-products-results">
+		<ShoppingListContext.Provider value = {{shoppingList, setShoppingList}}>
+			<main className = {styles.gridProductsResults}>
 
 				<ProductBigImage 
 					bigImageUrl = {bigImageUrl} 

@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react'
+import styles from './index.module.css'
 import { ShoppingListContext } from '../../Context'
 
 export default function ShoppingSummary() {
@@ -28,8 +29,8 @@ export default function ShoppingSummary() {
 
 		
 	const showSummary = () => {
-		let summaryContainer = document.querySelector('.summaryContainer')
-		let txtBtnShowCart = document.querySelector('.txtBtnShowCart')
+		let summaryContainer = document.querySelector('#summaryContainer')
+		let txtBtnShowCart = document.querySelector('#txtBtnShowCart')
 		let vh = (window.innerHeight - 50).toString() +'px'
 
 		if (summaryContainer.style.height === vh) {
@@ -57,44 +58,44 @@ export default function ShoppingSummary() {
 
 	const setSortedByFn = (param, i) => {
 		setSortedBy(param)
-		const filterSymbols = document.querySelectorAll('.filter-symbol')
+		const filterSymbols = document.querySelectorAll('.filterSymbolforFN')
 		filterSymbols.forEach((e)=>{
 			e.style.visibility = 'hidden'
 		})
 		
-		document.querySelectorAll('.filter-symbol')[i].style.visibility = 'visible'
+		document.querySelectorAll('.filterSymbolforFN')[i].style.visibility = 'visible'
 	}
 
 	return(
-		<section className = "summaryParent">
-			<div className = "summaryContainer">
-				<table className="tableSummary">
+		<section className = {styles.summaryParent}>
+			<div className = {styles.summaryContainer} id = "summaryContainer">
+				<table className = {styles.tableSummary}>
 					<thead>
 					<tr>
 						<th onClick={(e)=>setSortedByFn('type', 0)}>
-							 Type <span className = "filter-symbol"> ▾ </span>
+							 Type <span className = {styles.filterSymbol + " filterSymbolforFN"}> ▾ </span>
 						</th>
 						<th onClick={(e)=>setSortedByFn('name', 1)}>
-							 Name <span className = "filter-symbol"> ▾ </span>
+							 Name <span className = {styles.filterSymbol + " filterSymbolforFN"}> ▾ </span>
 						</th>
 						<th onClick={(e)=>setSortedByFn('price', 2)}>
-							 Price <span className = "filter-symbol"> ▾ </span>
+							 Price <span className = {styles.filterSymbol + " filterSymbolforFN"}> ▾ </span>
 						</th>
 						<th onClick={(e)=>setSortedByFn('amount', 3)}>
-							 Amount <span className = "filter-symbol"> ▾ </span>
+							 Amount <span className = {styles.filterSymbol + " filterSymbolforFN"}> ▾ </span>
 						</th>
 						<th onClick={(e)=>setSortedByFn('value', 4)}>
-							 Value <span className = "filter-symbol"> ▾ </span>
+							 Value <span className = {styles.filterSymbol + " filterSymbolforFN"}> ▾ </span>
 						</th>
 					</tr>
 					</thead>
 
 					<tbody>
-					{sortedShoppingList!==undefined &&
-						sortedShoppingList!==null && 
+					{sortedShoppingList !== undefined &&
+						sortedShoppingList !== null && 
 							sortedShoppingList.length !== 0 && 
 								sortedShoppingList.map((data, i)=>
-									(<tr key={i}>
+									(<tr key = {i}>
 										<td>{data.type}</td>
 										<td>{data.name}</td>
 										<td>R${data.price}</td>
@@ -104,27 +105,27 @@ export default function ShoppingSummary() {
 					)}
 					<tr>
 						<td 
-							className= "total"
+							className = {styles.total}
 						>
 							Total: 
 						</td>
 						<td 
-							colSpan="3" 
-							className= "total" 
+							colSpan = "3" 
+							className = {styles.total}
 						/>
 						<td 
-							className = "total"
+							className = {styles.total}
 						>
 							R${calcTotal()[0]}
 						</td>
 					</tr>
 					<tr>
 						<td 
-							colSpan="5" 
-							className = "container-buttons"
+							colSpan = "5" 
+							className = {styles.containerButtons}
 						>
 							<button 
-								className = "container-buttons__buy-button"
+								className = {styles.containerButtonsBuyButton}
 								disabled 
 								title="Soon.."
 							>
@@ -137,20 +138,20 @@ export default function ShoppingSummary() {
 			</div>
 
 			<button 
-				className = "btnSummary" 
+				className = {styles.btnSummary} 
 				onClick = {() => showSummary()}
 			>
-				<div className = "imgLittleCartContainer">
+				<div className = {styles.imgLittleCartContainer}>
 					<img 
-						className = "imgLittleCart" 
+						className = {styles.imgLittleCart} 
 						src = {process.env.PUBLIC_URL + "/cart.png"} 
 						alt = "Cart Icon" 
 					/>
-					<div className = "infoCartTotalAmount">{calcTotal()[1]}</div>
+					<div className = {styles.infoCartTotalAmount}>{calcTotal()[1]}</div>
 				</div>
 				
-				<span className = "txtBtnShowCart">Display Cart</span>
-				<span className = "totalBtnShowCart">R${calcTotal()[0]}</span>			
+				<span className = {styles.txtBtnShowCart} id = "txtBtnShowCart">Display Cart</span>
+				<span className = {styles.totalBtnShowCart}>R${calcTotal()[0]}</span>			
 			</button>
 		</section>
 	)	

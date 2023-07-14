@@ -1,10 +1,11 @@
 import React from 'react'
+import styles from './index.module.css'
 
 export default function Spinner(){
 
     return(
-        <div className="spinner-container">
-            <div className="spinner-container__circle" />
+        <div className = {styles.spinnerContainer}>
+            <div className = {styles.spinnerContainerCircle} />
         </div>
     )
 }
