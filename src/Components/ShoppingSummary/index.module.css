@@ -1,0 +1,181 @@
+.summaryParent {
+	bottom:28px;
+	max-height:22px;
+	position:fixed;
+	width:100vw;
+	height: 100%;
+	z-index:54;
+}
+
+@media only screen and (width >= 1500px) {
+	.summaryParent{
+		bottom:4.45vw;
+		width:100vw;
+		height: auto;
+	}
+	.btnSummary{
+		font-size: 1.7vw;
+		padding: 0.5vw;
+	}
+	.imgLittleCartContainer {
+		padding-left:1.1vw;
+	}
+	.imgLittleCartContainer .imgLittleCart{
+		width:1.5vw;
+		height: auto;
+	}
+	.imgLittleCartContainer .infoCartTotalAmount {
+		font-size: 1vw;
+		top:10px;
+		width:1.6vw;
+	}
+	.summaryParent .summaryContainer, .summaryParent .tableSummary td:nth-child(2) {
+		font-size: 1.8vw;
+	}
+	.containerButtons .containerButtonsBuyButton {
+		display: none;
+	}
+}
+
+.summaryContainer {
+	background-color: #FFF;
+	color:#222;
+	font-size: 0.8rem;
+	opacity:0.95;
+	overflow-y:auto;
+	position:fixed;
+	text-transform: capitalize;
+	top:0px;
+	transition: cubic-bezier(0, 0.3, 1, 0) 250ms;
+	visibility:visible;
+	width:100%;
+	height:0px;
+	z-index: -1;
+}
+
+.btnSummary {
+	align-items:center;
+	background-color:#008822;
+	border: none;
+	color:white;
+	display:grid;
+	font-weight:bolder;
+	grid-template-columns: 1fr 1fr 1fr;
+	opacity:1;
+	transition: linear 300ms;
+	width:100%;
+	height: 100%;
+	z-index: 22;
+}
+
+.btnSummary:hover {
+	background-color: #009900;
+	cursor: pointer;
+}
+
+.btnSummary:active {
+	background-color: #00ff00;
+}
+
+.imgLittleCartContainer {
+	display: flex;
+	justify-self:start;	
+	margin: auto 0;
+}
+
+.imgLittleCart {
+	filter: invert(100%);
+}
+
+.txtBtnShowCart {
+	justify-self:center;
+}
+
+.totalBtnShowCart {
+	justify-self:end;
+}
+
+.infoCartTotalAmount {
+	background-color:#F00;
+	border-radius:15px;
+	color: #FFF;	
+	font-size:9px;
+	font-weight:lighter;
+	margin:1px;
+	padding:1px;
+	transform: translate(1px, -3px);
+	width:15px;
+}
+
+.tableSummary {
+	background-color:#FFF;
+	border-collapse: collapse;
+	margin:0px;
+	padding:0px;
+	table-layout:auto;
+	top:0px;
+	width:100%;
+}
+
+.tableSummary, th, td {
+	border: 1px solid #d3d3d3;
+}
+
+.tableSummary th {
+	background-color:#344bc5;
+	color: #FFF;
+	cursor:pointer;
+	font-weight: bolder;
+	height:2rem;
+	padding: 5px 0px;
+	/* text-wrap:nowrap; */
+	white-space: pre;
+}
+
+.tableSummary thead>tr>th>.filterSymbol{
+	visibility: hidden;
+}
+
+.tableSummary thead>tr>th:nth-child(1)>.filterSymbol{
+	visibility: visible;
+}
+
+.tableSummary td {
+	height: 2rem;
+	padding-left: 5px;
+	padding-right: 5px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.tableSummary td:nth-child(2) {
+	font-size:0.8rem;
+}
+
+@media only screen and (max-width:350px){
+	.tableSummary td {
+		word-break: break-all;
+	}
+}
+
+.tableSummary tr:nth-of-type(even) {
+	background-color: #efefff;
+}
+
+.tableSummary .total {
+	background-color: #344bc5;
+	border: none;
+	color: #FFF;
+	font-weight: bolder;
+	padding: 5px 0px;
+	text-align: center;	
+	vertical-align: middle;	
+}
+
+.tableSummary .containerButtons{
+	text-align: right;
+}
+
+.containerButtonsBuyButton {
+	width: 50px;
+}

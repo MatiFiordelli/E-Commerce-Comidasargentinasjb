@@ -1,0 +1,32 @@
+.spinnerContainer{
+    align-items: center;
+    background-color: transparent;
+    display: grid;
+    justify-content: center;
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+}
+
+.spinnerContainerCircle{
+    animation: rotating-circle 1200ms linear infinite;
+    background-color: transparent;
+    border:0.7vw solid;
+    border-color: transparent #3b3a3a transparent #3b3a3a;
+    border-radius: 50%;
+    width: 5vw;
+    height: 5vw;
+    z-index: 0;
+}
+
+@keyframes rotating-circle {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}

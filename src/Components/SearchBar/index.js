@@ -1,69 +1,52 @@
-import React, { useState, /* useEffect */ } from 'react'
-import ReactDOM from 'react-dom'
-import GridResults from '../GridResults/index.js'
+import React, { useContext, useEffect, useState } from 'react'
+import styles from './index.module.css'
 import { useNavigate } from 'react-router-dom'
+import { RouteContext } from '../../Context/index.js'
 
 export default function SearchBar() {
-	const [search, setSearch] = useState('')
+	const [searchTerms, setSearchTerms] = useState('')
+	const [param, setParam] = useContext(RouteContext)
 	let navigate = useNavigate()
-	
-	function getData(arg, value) {
-		if(value !== '') {
+
+	const processPhrase = (phrase) => {
+		const p = phrase.trim()
+		return p.replaceAll(' ', '+')
+	}
+
+	const getData = () => {
+		if (searchTerms !== '') {
 			window.scrollTo(0, 0)
-			localStorage.setItem('searchInputLS', value)
-			
-			let theUrl = `http://comidasargentinasjb.atwebpages.com/connection.php?${arg}=${value}`
-			let component
-			fetch(theUrl)
-			.then((response)=> response.json())
-			.then((data)=>{
-				setSearch(value)
-				
-				Object.keys(data).length>0
-					?component = <GridResults JsonResults = {data}/>
-					:component = <div id="message">Nothing found, try a different term</div>
-				
-				let element = document.getElementById('gridContainer')
-				ReactDOM.render(component, element)
-			})
-		}
-		//Every time a search is made, it navigates to the web app root
-		navigate("/")
-		
-		//set every menu item in black
-		let element = document.getElementsByClassName('item')
-		for (let i in Object.entries(element)) {
-			element[i].style.backgroundColor = 'black'
+			navigate(`/${processPhrase(searchTerms)}`)
+			setParam(processPhrase(searchTerms))
 		}
 	}
-	
-/* 	useEffect(()=>{
-		let ls = localStorage.getItem('searchInputLS')
-		
-		//checks if a search has been made
-		if(ls !== null) {
-			document.getElementById('searchInput').value = ls
-			
-			//checks if the page has been refreshed
-			if(search === '') {
-				setSearch(ls)
-				getData('search', ls)
-			}
-		}
-	}) */
+
+	useEffect(()=>{
+		const term = window.location.pathname.substring(1)
+		setSearchTerms(term)
+	},[])
 
 	return (
-		<div id="searchContainer">
-			<input type="text" id="searchInput" placeholder="" autoFocus 
-				value={search}
-				onChange={ (e) => setSearch(e.target.value) }
-				onKeyUp={
-					(e)=> {
-						if(e.key === "Enter"){getData('search', search)}
+		<header className = {styles.searchBarContainer}>
+			<input
+				type = "text"
+				className = {styles.searchBarContainerInput}
+				placeholder = "What product are you looking for?"
+				autoFocus
+				value = {searchTerms}
+				onChange = {(e) => setSearchTerms(e.target.value)}
+				onKeyUp = {
+					(e) => {
+						if (e.key === "Enter") { getData() }
 					}
-				}					
+				}
 			/>
-			<button id="searchButton" onClick={()=> getData('search', search)}>&#x1F50E;&#xFE0E;</button>
-		</div>
+			<button
+				className = {styles.searchBarContainerButton}
+				onClick={() => getData()}
+			>
+				&#x1F50E;&#xFE0E;
+			</button>
+		</header>
 	)
 }

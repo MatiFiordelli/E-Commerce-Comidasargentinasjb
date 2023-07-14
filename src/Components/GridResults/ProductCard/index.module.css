@@ -1,0 +1,265 @@
+.products {
+	background-color: #FFF;
+	border-radius: 10px;
+	box-shadow: 3px 3px 9px rgb(138, 138, 138);
+	color: black;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 5px;
+	overflow: hidden;
+	padding: 0px;
+	position: relative;	
+	width: 200px;
+	height: 305px;
+}
+
+.backgroundCurvyPrice{
+	background: linear-gradient(200deg, #f7f7f7 0%, #ffffff 100%);
+	background-color: #d1d1d1;
+	border-radius:50%;
+	bottom:-40%;
+	right: -45%;
+	position:absolute;
+	transform:skewX(-25deg) rotateY(5deg);
+	width:300px;
+	height: 250px;
+	z-index: 0;
+}
+
+@media only screen and (width>=851px) {
+	.products {
+		border-radius: 1vw;
+		box-shadow: 0.8vw 0.8vw 1.2vw #8a8a8a;
+		width: 20vw;
+		height: 30vw;
+	}
+
+	.backgroundCurvyPrice{
+		width:31vw;
+		height: 25vw;
+	}
+
+	.titleProduct {
+		font-size: 1vw;
+	}
+
+	.descriptionProduct {
+		font-size: 1vw;
+		top: 30%;
+	}
+
+	.priceProduct {
+		font-size: 1.7vw;
+		top: 85%;
+	}
+
+	.btnAddCart {
+		border-radius: 1vw;
+		bottom: 2%;
+		font-size: 1.4vw;	
+	}
+
+	.containerAmountProduct {
+		font-size: 1.4vw;
+	}
+
+	.containerAmountProduct .arrows {
+		width: 1.4vw;
+		height: 1.4vw;
+	}
+}
+
+@media only screen and (432px <=width <=850px) {
+	.titleProduct {
+		font-size: 12px;
+	}
+
+	.descriptionProduct {
+		font-size: 11px;
+		top: 30%;
+	}
+
+	.priceProduct {
+		font-size: 25px;
+		top: 85%;
+	}
+
+	.btnAddCart {
+		bottom: 1vw;
+	}
+}
+
+@media screen and (max-width:431px) {
+	.products {
+		margin: 0;
+		width: 44%;
+	}
+
+	.titleProduct {
+		font-size: 9px;
+	}
+
+	.descriptionProduct {
+		font-size: 9px;
+		top: 25%;
+	}
+
+	.priceProduct {
+		font-size: 20px;
+		top: 85%;
+	}
+
+	.btnAddCart {
+		bottom: 2vw;
+	}
+}
+
+.imageProduct {
+	background-color: #000;
+	background-position: center bottom;
+	background-repeat: no-repeat;
+	background-size: cover;
+	border-radius: 10px 10px 0 0;
+	cursor: pointer;
+	position: absolute;
+	text-align: center;
+	top: 0px;
+	transition: 150ms linear;
+	vertical-align: middle;
+	width: 100%;
+	height: 45%;
+}
+
+.imageProduct:hover {
+	filter: blur(4px);
+}
+
+.imageProduct:active {
+	filter: blur(4px) brightness(120%);
+}
+
+.textsProduct {
+	position: relative;
+	top: 14%;
+	width: 90%;
+	height: 35%;
+	z-index: 1;
+}
+
+.titleProduct {
+	font-weight: bolder;
+	margin: 1px;
+	padding: 1px;
+	padding-bottom: 2px;
+	position: absolute;
+	text-transform: uppercase;
+	top: 0%;
+	height: auto;
+	width: 95%;
+	z-index: 1;
+}
+
+.descriptionProduct {
+	color: gray;
+	font-style: italic;
+	margin: 1px;
+	overflow: auto;
+	padding: 1px;
+	position: absolute;
+	text-align: justify;
+	width: 95%;
+	height: auto;
+	z-index: 1;
+}
+
+.priceProduct {
+	color: #777777;
+	font-family: 'Arial Black', Arial, Helvetica, sans-serif;
+	margin: 1px;
+	padding: 1px;
+	position: absolute;
+	text-align: right;
+	width: 95%;
+	height: auto;
+	z-index: 1;
+}
+
+.containerAmountProduct {
+	border: 1px solid lightgray;
+	border-radius: 10px;
+	bottom: 0.5vw;
+	display: none;	
+	grid-gap: 1px;
+	grid-template-columns: auto auto auto;
+	justify-content: space-between;
+	margin: 3px;
+	padding: 4px;
+	position: absolute;
+	transition: ease-out 300ms;
+	user-select: none;
+	visibility: hidden;
+	width: 90%;
+	z-index: 5;
+}
+
+.inputAmountProduct {
+	border: none;
+	font-size: 0.8em;
+	outline: none;
+	text-align: center;
+	user-select: none;
+	width: 100%;
+}
+
+.arrows {
+	background-color: #DDD;
+	border: none;
+	border-radius: 3px;
+	color: #FFF;
+	display: grid;
+	font-size: 0.5em;
+	justify-content: center;
+	align-items: center;
+	outline: 1px solid #ccc;
+	transition: 150ms linear;
+	width: 19px;
+	height: 19px;
+}
+
+.arrows:hover {
+	background-color: #999999;
+	cursor: pointer;
+}
+
+.arrows:active {
+	background-color: #777777;
+}
+
+.btnAddCart {
+	background-color: #00dd22;
+	border: none;
+	border-radius: 10px;
+	color: white;
+	display:none;
+	font-weight: bolder;	
+	margin: 0px;
+	padding: 4px;
+	position: absolute;
+	text-align: center;
+	text-shadow: 1px 1px 1px gray;
+	transition: 150ms linear;
+	visibility: hidden;
+	width: 90%;
+	z-index: 4;	
+}
+
+.btnAddCart:hover {
+	background-color: #00ee00;
+	cursor: pointer;
+}
+
+.btnAddCart:active {
+	background-color: #00ff00;
+}
