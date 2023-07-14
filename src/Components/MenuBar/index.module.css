@@ -1,7 +1,6 @@
 .menuContainer {
 	bottom:0;
 	left:0;
-	cursor: pointer;
 	display:inline-grid;
 	margin: 0;
 	overflow: hidden;
@@ -30,6 +29,10 @@
 	transition: ease-out 150ms;
 	user-select: none;
     z-index: 56;
+}
+
+.menuInnerItem {
+	cursor: pointer;
 }
 
 .menuInner .menuInnerItem {

@@ -71,7 +71,7 @@
 	}
 }
 
-@media only screen and (401px <=width <=850px) {
+@media only screen and (432px <=width <=850px) {
 	.titleProduct {
 		font-size: 12px;
 	}
@@ -91,9 +91,14 @@
 	}
 }
 
-@media screen and (max-width:400px) {
+@media screen and (max-width:431px) {
+	.products {
+		margin: 0;
+		width: 44%;
+	}
+
 	.titleProduct {
-		font-size: 10px;
+		font-size: 9px;
 	}
 
 	.descriptionProduct {
@@ -117,6 +122,7 @@
 	background-repeat: no-repeat;
 	background-size: cover;
 	border-radius: 10px 10px 0 0;
+	cursor: pointer;
 	position: absolute;
 	text-align: center;
 	top: 0px;
